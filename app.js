@@ -4,6 +4,8 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+
 //Routers
 const routerInicio = require('./routers/routerInicio.js');
 app.use('/api/inicio',routerInicio);
