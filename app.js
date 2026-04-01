@@ -1,8 +1,17 @@
 const express = require("express");
 
+
 const app = express();
 const PORT = 3000;
 
+//Routers
+const routerInicio = require('./routers/routerInicio.js');
+app.use('/api/inicio',routerInicio);
+
+const routerTasks = require('./routers/routerTasks.js');
+app.use('/api/tasks',routerTasks);
+
+//Server
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
