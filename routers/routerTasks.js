@@ -1,6 +1,7 @@
 //URL: /api/tasks
 const express = require('express');
 
+//se deberá cambiar la lógica del almacenamiento al momento de implementar la DB.
 const tasks = require('../tareas/mis-tareas.json');
 
 const routerTasks = express.Router();
@@ -71,10 +72,36 @@ routerTasks.post('/',(req,res) => {
 
     //status: 201 Created.
     res.status(201).json({
-        msg: "Se han agregado las tareas correctamente.",
+        msg: 'Se han agregado las tareas correctamente.',
         tareas: tasks
     });
 
+});
+
+routerTasks.put('/:id', (req,res) => {
+    try{
+        const taskID = req.params.id;
+        
+        if(taskID < 0){
+            res.status(400).json({
+                msg: 'Error: ID de la tarea invalido.'
+            });
+            throw new Error('ID invalido.');
+        }
+
+    }
+
+    catch(e){
+        console.log('Fallo al actualizar el/los elementos. ',e);
+        return;
+    }
+
+    //status: 200 OK.
+    res.status(200).json({
+        msg: 'Se han actualizado las tareas correctamente.',
+        tareas: tasks
+    });
+    
 });
 
  module.exports = routerTasks;

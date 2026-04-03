@@ -18,3 +18,13 @@ Content-Type: application/json
         "categoria": "general"
     }    
 ]
+
+###
+PUT http://127.0.0.1:3000/api/tasks/20
+Content-Type: application/json
+
+[
+    {
+
+    }
+]
