@@ -1,10 +1,13 @@
+//URL: /api/tasks
 const express = require('express');
 
 const tasks = require('../tareas/mis-tareas.json');
 
 const routerTasks = express.Router();
 
-//agregar manejo de errores
+const validKeys = ["id","nombre","estado","fecha-objetivo","categoria"];
+
+//filtra solamente por categoria
 routerTasks.get('/', (req,res) => {
     const {cat} = req.query;
     console.log(`La categoria solicitada es: ${cat}`);
@@ -28,18 +31,43 @@ routerTasks.get('/', (req,res) => {
 
 //acepta unicamente un array
 routerTasks.post('/',(req,res) => {
-    const newTasks = req.body;
+    try{
+        const newTasks = req.body;
+        //status: 400 Bad request.
+        if(!Array.isArray(newTasks)){
+                res.status(400).json({
+                error: "se esperaba un array de tareas"
+            });
+            throw new Error('El cuerpo de la solicitud no es un array.');
+        }
+        
+        newTasks.forEach((currTask) => {
+            const keys = Object.keys(currTask);
+            
+            if(keys.length != validKeys.length){
+                res.status(400).json({
+                    msg: 'Error: Objeto invalido.'
+                });
+                throw new Error('Objeto invalido.');
+            }
 
-    //status: 400 Bad request.
-    if(!Array.isArray(newTasks)){
-        res.status(400).json({
-            error: "se esperaba un array de tareas"
+            keys.forEach((currKey) => {
+                if(!(validKeys.includes(currKey))){
+                        res.status(400).json({
+                            msg: `Error: Clave '${currKey}' no valida.`
+                        });
+                        throw new Error('Clave no valida.');
+                }
+            });
         });
+
+        tasks.push(...newTasks);
     }
 
-    tasks.push(...req.body)
-
-    console.log(tasks);
+    catch(e){
+        console.log('Fallo en la creación del elemento. ', e);
+        return;
+    }
 
     //status: 201 Created.
     res.status(201).json({
