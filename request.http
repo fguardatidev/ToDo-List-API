@@ -10,11 +10,11 @@ Content-Type: application/json
         "fecha-objetivo": "31/03/2026",
         "categoria": "general"
     },
-        {
+    {
         "id": 301,
         "nombre": "ir de compras",
         "estado": "completado",
         "fecha-objetivo": "31/03/2026",
         "categoria": "general"
-    
+    }    
 ]

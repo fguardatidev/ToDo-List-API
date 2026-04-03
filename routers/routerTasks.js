@@ -5,7 +5,7 @@ const tasks = require('../tareas/mis-tareas.json');
 
 const routerTasks = express.Router();
 
-const validKeys = ["id","nombre","estado","fecha-objetivo","categoria"];
+const validKeys = ['id','nombre','estado','fecha-objetivo','categoria'];
 
 //filtra solamente por categoria
 routerTasks.get('/', (req,res) => {
@@ -36,7 +36,7 @@ routerTasks.post('/',(req,res) => {
         //status: 400 Bad request.
         if(!Array.isArray(newTasks)){
                 res.status(400).json({
-                error: "se esperaba un array de tareas"
+                error: 'se esperaba un array de tareas'
             });
             throw new Error('El cuerpo de la solicitud no es un array.');
         }
