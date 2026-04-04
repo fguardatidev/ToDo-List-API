@@ -130,4 +130,31 @@ routerTasks.put('/:id', (req,res) => {
     
 });
 
+routerTasks.delete('/:id', (req,res) => {
+    const taskID = req.params.id;
+    try{
+        const targetTaskIndex = tasks.findIndex((elem) => elem.id == taskID);
+    
+        if(targetTaskIndex < 0){
+            res.status(404).json({
+                msg: `Error: No se encontro ninguna tarea con el ID ${taskID}.`
+            });
+            throw new Error('Tarea no encontrada.');
+        }
+
+        tasks.splice(targetTaskIndex,1);
+    }
+
+    catch(e){
+        console.log('Fallo al actualizar el/los elementos. ',e);
+        return;
+    }
+
+    //status: 200 OK.
+    res.status(200).json({
+        msg: `Se ha eliminado la tarea con ID ${taskID}.`,
+        tareas: tasks
+    });
+})
+
  module.exports = routerTasks;

@@ -1,7 +1,6 @@
 POST http://127.0.0.1:3000/api/tasks
 Content-Type: application/json
 
-
 [
     {
         "id": 300,
@@ -26,3 +25,7 @@ Content-Type: application/json
     {
         "nombre": "pepito"
     }
+
+###
+DELETE http://127.0.0.1:3000/api/tasks/5
+Content-Type: application/json
