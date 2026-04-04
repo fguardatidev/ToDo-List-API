@@ -1,5 +1,6 @@
 [
     {
+        "userid": 1,
         "id": 1,
         "nombre": "verificar el pure de papas",
         "estado": "pendiente",
@@ -7,6 +8,7 @@
         "categoria": "general"
     },
     {
+        "userid": 1,
         "id": 2,
         "nombre": "ir de compras",
         "estado": "completado",
@@ -14,6 +16,7 @@
         "categoria": "general"
     },
     {
+        "userid": 1,
         "id": 3,
         "nombre": "darle de comer a inu",
         "estado": "iniciado",
@@ -21,6 +24,7 @@
         "categoria": "general"
     },
     {
+        "userid": 2,
         "id": 4,
         "nombre": "revisar miel",
         "estado": "completado",
@@ -28,6 +32,7 @@
         "categoria": "facultad"
     },
     {
+        "userid": 2,
         "id": 5,
         "nombre": "lavar el auto",
         "estado": "pendiente",
