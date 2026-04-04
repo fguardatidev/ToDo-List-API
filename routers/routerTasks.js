@@ -81,7 +81,9 @@ routerTasks.post('/',(req,res) => {
 routerTasks.put('/:id', (req,res) => {
     try{
         const taskID = req.params.id;
-        
+        const data = req.body;
+        const dataKeys = Object.keys(data);
+
         if(taskID < 0){
             res.status(400).json({
                 msg: 'Error: ID de la tarea invalido.'
@@ -89,6 +91,30 @@ routerTasks.put('/:id', (req,res) => {
             throw new Error('ID invalido.');
         }
 
+        //pasada para verificar todas las claves incluidas en el body.
+        //NO se permite el campo ID dentro del body de la request.
+        dataKeys.forEach((key) => {
+            if(!(validKeys.includes(key)) || key.toLowerCase() == "id"){
+                res.status(400).json({
+                    msg: `Error: Clave ${key} no valida.`
+                });
+                throw new Error('Clave no valida.');
+            }
+        });
+
+        //pasada para actualizacion de las claves
+        const targetTaskIndex = tasks.findIndex(elem => elem.id == taskID);
+        if(targetTaskIndex < 0){
+            res.status(404).json({
+                msg: `Error: No se encontro ninguna tarea con el ID ${taskID}.`
+            });
+            throw new Error('Tarea no encontrada.');
+        }
+
+        dataKeys.forEach((key) => {
+            console.log(targetTaskIndex);
+            tasks[targetTaskIndex][key] = data[key];
+        });
     }
 
     catch(e){
@@ -98,7 +124,7 @@ routerTasks.put('/:id', (req,res) => {
 
     //status: 200 OK.
     res.status(200).json({
-        msg: 'Se han actualizado las tareas correctamente.',
+        msg: 'Se ha actualizado la tarea correctamente.',
         tareas: tasks
     });
     

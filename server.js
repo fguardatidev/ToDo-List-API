@@ -14,10 +14,6 @@ const routerTasks = require('./routers/routerTasks.js');
 app.use('/api/tasks',routerTasks);
 
 //Server
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 app.listen(PORT, () => {
   console.log(`Tasks managment API listening on port ${PORT}!`);
 });

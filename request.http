@@ -20,11 +20,9 @@ Content-Type: application/json
 ]
 
 ###
-PUT http://127.0.0.1:3000/api/tasks/20
+PUT http://127.0.0.1:3000/api/tasks/50
 Content-Type: application/json
 
-[
     {
-
+        "nombre": "pepito"
     }
-]
