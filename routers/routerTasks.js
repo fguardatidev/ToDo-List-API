@@ -8,38 +8,12 @@ const routerTasks = express.Router();
 
 const validKeys = ['userid','id','nombre','estado','fecha-objetivo','categoria'];
 
-const {getTaskByUser} = require('../models/tasksModel.js');
+const {getTaskByUser, getTaskByUserCat} = require('../models/tasksModel.js');
 
-//filtra solamente por user ID
-/*
-routerTasks.get('/user/:userid', (req,res) => {
-    const userID = req.params.userid;
-    console.log(userID);
-    try{
-        let result = tasks.filter((elem) => elem.userid == userID);
-        console.log(result);
-
-        if(result.length > 0){
-            res.status(200).json({
-                msg: `Devolviendo tareas del usuario con ID ${userID}`,
-                tasks: result
-            })
-        } else{
-            res.status(204).end();
-        }
-    }
-
-    catch(e){
-        res.status(500).json({
-            msg: 'Error del servidor.'
-        });
-        console.log('Error interno');
-    }
-});
-*/
 routerTasks.get('/user/:userid',getTaskByUser);
 
 //filtra por usuario y categoria
+/*
 routerTasks.get('/user/:userid/cat/:categoria', (req,res) => {
     const userID = req.params.userid;
     const cat = req.params.categoria
@@ -63,6 +37,9 @@ routerTasks.get('/user/:userid/cat/:categoria', (req,res) => {
         console.log('Error interno');
     }
 });
+*/
+routerTasks.get('/user/:userid/cat/:categoria',getTaskByUserCat);
+
 
 //filtra por usuario y task ID
 routerTasks.get('/user/:userid/task/:taskid', (req,res) => {
