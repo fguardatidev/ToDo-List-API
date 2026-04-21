@@ -1,10 +1,11 @@
 const mysql = require('mysql2/promise');
 
 const db = mysql.createPool({
-    host: 'localhost',
+    host: '192.168.1.41',
     user: 'api',
     password: '12345678',
-    database: 'todolistdb'
+    database: 'todolistdb',
+    port: 3306
 });
 
 (
