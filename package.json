@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/fguardatidev/ToDo-List-API#readme",
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "mysql2": "^3.20.0",
     "node": "^25.8.2"

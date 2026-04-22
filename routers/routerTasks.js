@@ -12,34 +12,7 @@ const {getTaskByUser, getTaskByUserCat} = require('../models/tasksModel.js');
 
 routerTasks.get('/user/:userid',getTaskByUser);
 
-//filtra por usuario y categoria
-/*
-routerTasks.get('/user/:userid/cat/:categoria', (req,res) => {
-    const userID = req.params.userid;
-    const cat = req.params.categoria
-    try{
-        let result = tasks.filter((elem) => elem.userid == userID && elem.categoria == cat);
-
-        if(result.length > 0){
-            res.status(200).json({
-                msg: `Devolviendo tareas del usuario con ID ${userID}`,
-                tasks: result
-            })
-        } else{
-            res.status(204).end();
-        }
-    }
-
-    catch(e){
-        res.status(500).json({
-            msg: 'Error del servidor.'
-        });
-        console.log('Error interno');
-    }
-});
-*/
 routerTasks.get('/user/:userid/cat/:categoria',getTaskByUserCat);
-
 
 //filtra por usuario y task ID
 routerTasks.get('/user/:userid/task/:taskid', (req,res) => {

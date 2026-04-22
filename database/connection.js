@@ -1,16 +1,17 @@
 const mysql = require('mysql2/promise');
 
 const db = mysql.createPool({
-    host: '192.168.1.41',
-    user: 'api',
-    password: '12345678',
-    database: 'todolistdb',
-    port: 3306
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
 });
 
 (
     async () => {
         try{
+            console.log('Realizando conexión con la base de datos...');
             const connection = await db.getConnection();
             console.log('Base de datos conectada!');
             connection.release();
